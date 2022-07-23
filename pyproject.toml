@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astprettier"
+version = "0.1"
+description = "Pretty print the output of python stdlib `ast.parse`."
+readme = "readme.md"
+requires-python = ">=3.8"
+license = { file = "license.txt" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10"
+]
+
+[[authors]]
+name = "Ronny Rentner"
+email = "astprettier.code@ronny-rentner.de"
+
+[[authors]]
+name = "Anthony Sottile"
+email = "asottile@umich.edu"
+
+[project.urls]
+main = "https://github.com/ronny-rentner/astprettier"
+
+[project.scripts]
+astprettier = "astprettier:main"
+
+[project.optional-dependencies]
+test = ["ultraimport", "pytest"]
+colorize = ["pygments"]
+
+[tool.setuptools]
+#packages = {find = {where = ["."], exclude=[".*"]}}
+# FIXME: Does not work, the files are still included
+include-package-data = false
+
+[tool.setuptools.exclude-package-data]
+# FIXME: Does not work, the files are still included
+astprettier = [".gitignore", '.github', 'ci.yml']
+"*" = [".gitignore", '.github', 'ci.yml']
+
+[tool.egg_info]
+# FIXME: Does not work, parameter is ignored
+egg_base = "./build/lib"
