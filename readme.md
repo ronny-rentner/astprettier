@@ -5,7 +5,7 @@
 [![Python >=3.8](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/github/license/ronny-rentner/astprettier.svg)](https://github.com/ronny-rentner/astprettier/blob/master/license.txt)
 
-Pretty print the output of Python AST `ast.parse`.
+Pretty print Python AST nodes, the return value of `ast.parse`
 
 __Note:__ This is a fork of [astpretty](https://github.com/asottile/astpretty). The goals of this fork are:
  * Adding more advanced features that go beyond the REPL scope of astpretty

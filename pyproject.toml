@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "astprettier"
 version = "0.1"
-description = "Pretty print the output of python stdlib `ast.parse`."
+description = "Pretty print Python AST nodes, the return value of `ast.parse`"
 readme = "readme.md"
 requires-python = ">=3.8"
 license = { file = "license.txt" }
