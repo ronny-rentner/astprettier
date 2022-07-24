@@ -156,11 +156,3 @@ def main(*args):
 
 if __name__ == '__main__':
     main()
-else:
-    # Make astprettier() directly callable after doing `import astprettier`
-    class CallableModule(types.ModuleType):
-        def __call__(self, *args, **kwargs):
-            return pprint(*args, **kwargs)
-
-    sys.modules[__name__].__class__ = CallableModule
-    sys.modules[__name__].print = pprint

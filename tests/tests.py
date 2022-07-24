@@ -148,7 +148,7 @@ def test_pformat_leaf_node_with_list():
 
 
 def test_print(capsys):
-    astprettier.print(get_expr_value('x'), show_offsets=False)
+    astprettier.pprint(get_expr_value('x'), show_offsets=False)
     out, _ = capsys.readouterr()
     assert out == "Name(id='x', ctx=Load())\n"
 

@@ -30,16 +30,20 @@ email = "asottile@umich.edu"
 main = "https://github.com/ronny-rentner/astprettier"
 
 [project.scripts]
-astprettier = "astprettier:main"
+astprettier = "astprettier.astprettier:main"
 
 [project.optional-dependencies]
 test = ["ultraimport", "pytest"]
 colorize = ["pygments"]
 
 [tool.setuptools]
-#packages = {find = {where = ["."], exclude=[".*"]}}
+#packages = {find = {where = ["."], include=["astprettier*"]}}
+#py-modules = ["astprettier"]
 # FIXME: Does not work, the files are still included
 include-package-data = false
+packages = ["astprettier"]
+[tool.setuptools.package-dir]
+astprettier = "."
 
 [tool.setuptools.exclude-package-data]
 # FIXME: Does not work, the files are still included
