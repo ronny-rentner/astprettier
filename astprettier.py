@@ -124,7 +124,7 @@ def pprint(node, indent_level=0, indent='    ', show_offsets=True, ns_prefix='',
 def main(*args):
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('filename', nargs='?')
+    parser.add_argument('filename', nargs='?', type=argparse.FileType('r'), default=(None if not sys.stdin.isatty() else sys.stdin))
     parser.add_argument(      '--show-offsets',    dest='show_offsets', action='store_const', const=True)
     parser.add_argument('-n', '--no-show-offsets', dest='show_offsets', action='store_const', const=False)
     parser.add_argument('-i', '--indent',          dest='indent',       action='store')
@@ -134,21 +134,16 @@ def main(*args):
     parser.add_argument(      '--no-colorize',     dest='colorize',     action='store_const', const=False)
     args = parser.parse_args(*args)
 
-    tree = None
-    if args.filename:
-        try:
-            with open(args.filename, 'rb') as f:
-                contents = f.read()
-        except Exception as e:
-            print(e)
-            raise SystemExit(1)
-        tree = ast.parse(contents, filename=args.filename)
-    else:
-        contents = sys.stdin.read()
-        tree = ast.parse(contents)
+    if not args.filename:
+        parser.print_usage()
+        print('Error: missing filename')
+        raise SystemExit(1)
 
+    contents = str(args.filename.read())
+    tree = ast.parse(contents, filename=args.filename.name)
 
     del args.filename
+
     # Filter all arguments with value `None` becaues they have not actually been set when calling
     # astprettier from command line
     actually_set_arguments = { k: v for (k, v) in vars(args).items() if v is not None }
