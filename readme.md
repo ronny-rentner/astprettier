@@ -68,40 +68,33 @@ ast.AugAssign(
 )
 ```
 
-### Script
+### Console
+
+On console, you can either pass Python syntax via STDIN or provide a filename.
 
 ```bash
-$ python -m astprettier ./setup.py
-Module(
-    body=[
-        ImportFrom(
-            lineno=1,
-            col_offset=0,
-            end_lineno=1,
-            end_col_offset=28,
-            module='setuptools',
-            names=[alias(name='setup', asname=None)],
-            level=0,
-        ),
-        Expr(
-            lineno=2,
-            col_offset=0,
-            end_lineno=2,
-            end_col_offset=7,
-            value=Call(
-                lineno=2,
-                col_offset=0,
-                end_lineno=2,
-                end_col_offset=7,
-                func=Name(lineno=2, col_offset=0, end_lineno=2, end_col_offset=5, id='setup', ctx=Load()),
-                args=[],
-                keywords=[],
-            ),
-        ),
-    ],
-    type_ignores=[],
-)
+$ astprettier -h
+usage: astprettier.py [-h] [--show-offsets] [-n] [-i INDENT] [-l INDENT_LEVEL] [-p NS_PREFIX] [-c] filename
+
+positional arguments:
+  filename
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --show-offsets
+  -n, --no-show-offsets
+  -i INDENT, --indent INDENT
+  -l INDENT_LEVEL, --level INDENT_LEVEL
+  -p NS_PREFIX, --ns-prefix NS_PREFIX
+  -c, --colorize
 ```
+
+`astprettier` can optionally colorize the console output with pygments.
+
+```bash
+$ echo 'x=1' | astprettier -c
+```
+![image](docs/images/console-screenshot.gif)
 
 ## Contributing
 
